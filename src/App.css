@@ -1,0 +1,256 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&display=swap");
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #0d1321;
+  background-image: radial-gradient(circle at center, #1d2b45 0%, #0d1321 100%);
+  font-family: "Noto Serif TC", serif;
+  color: #fdf8f5;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  padding: 50px 20px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.mystic-title {
+  font-size: 3rem;
+  color: #d4af37;
+  margin-bottom: 10px;
+  letter-spacing: 4px;
+  font-weight: 700;
+  text-shadow: 0 2px 10px rgba(212, 175, 55, 0.3);
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: #a0aab2;
+  margin-bottom: 30px;
+  letter-spacing: 1px;
+}
+
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.gold-button {
+  background: linear-gradient(135deg, #d4af37 0%, #aa8c2c 100%);
+  color: #0d1321;
+  border: none;
+  padding: 12px 35px;
+  font-size: 1.2rem;
+  font-family: inherit;
+  font-weight: bold;
+  border-radius: 30px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+  transition: all 0.3s ease;
+  letter-spacing: 2px;
+}
+
+.gold-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
+}
+
+.gold-button.outline {
+  background: transparent;
+  color: #d4af37;
+  border: 1px solid #d4af37;
+}
+
+.gold-button.outline:hover {
+  background: rgba(212, 175, 55, 0.1);
+}
+
+.gold-button:disabled {
+  background: #555;
+  color: #888;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.card-wrapper {
+  flex: 1;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  perspective: 1200px;
+}
+
+.card-position-label {
+  color: #d4af37;
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+  letter-spacing: 2px;
+  border-bottom: 1px solid #d4af37;
+  padding-bottom: 5px;
+  z-index: 10;
+}
+
+.card-inner {
+  width: 100%;
+  height: 420px; /* 移除圖片後，將高度調低一點 */
+  position: relative;
+  transition: transform 0.8s cubic-bezier(0.4, 0.2, 0.2, 1);
+  transform-style: preserve-3d;
+  cursor: pointer;
+}
+
+.card-inner.is-flipped {
+  transform: rotateY(180deg);
+  cursor: default;
+}
+
+.card-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* 牌背 */
+.card-back {
+  background: #1a2436;
+  border: 2px solid #d4af37;
+  justify-content: center;
+  align-items: center;
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(212, 175, 55, 0.05) 0,
+    rgba(212, 175, 55, 0.05) 2px,
+    transparent 2px,
+    transparent 8px
+  );
+}
+
+.card-back-design {
+  border: 1px solid rgba(212, 175, 55, 0.5);
+  width: 85%;
+  height: 85%;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #d4af37;
+  font-size: 1.3rem;
+  letter-spacing: 4px;
+}
+
+.star-icon {
+  font-size: 2rem;
+  margin: 20px 0;
+  opacity: 0.8;
+}
+
+/* 牌面純文字版 */
+.card-front {
+  background: #fdf8f5;
+  border: 2px solid #d4af37;
+  transform: rotateY(180deg);
+}
+
+.card-text-content {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* 讓文字在卡片中垂直置中 */
+  text-align: center;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.card-name {
+  color: #1d2b45;
+  font-size: 1.5rem; /* 稍微放大牌名 */
+  margin: 0 0 15px 0;
+  font-weight: bold;
+}
+
+.divider {
+  width: 50px;
+  height: 2px;
+  background-color: #d4af37;
+  margin-bottom: 25px;
+}
+
+.card-meaning {
+  color: #4a5568;
+  font-size: 1.05rem; /* 稍微放大解釋文字 */
+  line-height: 1.8;
+  margin: 0;
+}
+
+.loading-text,
+.empty-state {
+  font-size: 1.2rem;
+  color: #a0aab2;
+  letter-spacing: 2px;
+  margin-top: 50px;
+}
+
+@media (max-width: 768px) {
+  .card-wrapper {
+    width: 90%;
+    flex: none;
+    min-width: unset;
+  }
+}
+
+/* === 新增：正逆位標籤樣式 === */
+.orientation-tag {
+  font-size: 0.9rem;
+  padding: 4px 12px;
+  border-radius: 15px;
+  margin-bottom: 15px;
+  letter-spacing: 1px;
+  font-weight: bold;
+}
+
+.orientation-tag.upright {
+  color: #b08a1d;
+  background-color: rgba(212, 175, 55, 0.15);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+}
+
+.orientation-tag.reversed {
+  color: #b24a4a; /* 暗紅色調，象徵阻礙或內省 */
+  background-color: rgba(178, 74, 74, 0.1);
+  border: 1px solid rgba(178, 74, 74, 0.3);
+}
+
+/* 調整一下牌面名字的底部間距，讓標籤塞得下 */
+.card-name {
+  color: #1d2b45;
+  font-size: 1.5rem;
+  margin: 0 0 10px 0;
+  font-weight: bold;
+}
